@@ -1,0 +1,121 @@
+=== User Input File for AHTR Script ===
+
+-SCRIPT MODE AND BASIC PHYSICS
+5                   // Script Mode. 0 - Statepoint, 1 - CB Insertion, 2 - CB Withdrawal, 3 - Criticality Search, 4 - TH Search, 5 - Depletion (without criticality search, no TH), 6 - Depletion (with criticality search, no TH), 7 - Depletion (without criticality search, TH), 8 - Depletion (with criticality search, TH)
+0                   // Use cold dimensions. 0 - False (Thermal Expansion), 1 - True (No Thermal Expansion)
+100000              // Statepoint Particles per Cycle
+1000                // Statepoint Active Cycles
+150                 // Statepoint Inactive Cycles
+
+-GEOMETRY
+--Fuel Particle
+0.02135             // Cold Fuel Kernel Radius [cm]
+0.03135             // Cold Buffer Layer Radius [cm]
+0.03485             // Cold Inner Pyrolytic Carbon Layer Radius [cm]
+0.03835             // Cold Silicon Carbide Layer Radius [cm]
+0.04235             // Cold Outer Pyrolytic Carbon Layer Radius [cm]
+--Fuel Lattice
+1					// Particle Lattice type. 0 - cuboidal, 1 - cubic (wrt z, overrides x and y pitches) 	
+4                   // Width of Fuel Stripe (in Layers)
+202                 // Length of Fuel Stripe
+0.09406				// Cold X Lattice Pitch [cm]
+0.09128             // Cold Y Lattice Pitch [cm]
+0.09266             // Cold Z Lattice Pitch [cm]
+--Burnable Poison Lattice
+1                   // Burnable Poison Sphere Usage. 0 - None, 1 - Use   
+0.035               // Cold Poison Kernel Radius [cm]
+0.09936             // Cold Poison Kernel Axial Pitch [cm]
+5                   // Number of BP columns (must be odd) [cm]
+40                  // Integral pitch spacing along the fuel plank
+--Planks and Assembly
+2.55                // Cold Plank Width [cm]
+0.1                 // Cold Sleeve Width (distance from coolant to fuel stripe) [cm]
+14                  // Cold Distance Between Spacers [cm] 
+22.5                // Cold Assembly Apothem [cm] 
+46.8                // Cold Assembly Pitch [cm]
+--Reflector Assemblies
+1                   // Reflector Assembly Central Cooling Hole Usage. 0 - False, 1 - True
+2                   // Reflector Assembly Central Cooling Hole Cold Radius [cm]
+22.5                // Reflector Assembly Cold Apothem [cm]
+--Axial Discretization
+16                  // Number of Modeled Axial Partitions in Active Core (up to 16) (fewer requires using cubic triso lattice)
+550.02976           // Cold Active Core Height [cm]
+25                  // Cold Height of Top/Bottom Axial Reflectors [cm]
+35                  // Cold Height of Top/Bottom Axial Support Plates [cm]
+1                   // Axial Flowering / Interassembly Expansion. 0 - False (uses axial average expansion). 1 - True (uses axial partition specific expansion)
+--Beyond Active Core
+478                 // Cold Permanent Radial Reflector Outer Radius [cm]
+479                 // Cold Boron Carbide Layer Outer Radius [cm]
+481                 // Cold Core Barrel Outer Radius [cm]
+519                 // Cold Downcomer Outer Radius [cm]
+520                 // Cold Alloy N Outer Radius [cm]
+525                 // Cold Pressure Vessel Outer Radius [cm]             
+
+-MATERIALS
+--Uniform Definitions (For statepoint or desiring uniformity, no need for unique material definitions. Uses axial average temperature and properties.)
+0                   // Fuel. 0 - Unique for each 1/3 assembly section , 1 - Only one, over whole geometry
+0                   // Other TRISO Particle Layers. 0 - Unique for each 1/3 assembly section, 1 - Only one material per layer
+0                   // Structural Graphite Components. 0 - Unique for each 1/3 assembly section, 1 - Just one graphite and C-C composite
+0                   // Burnable Poison Material. 0 - Unique, 1 - Uniform
+0                   // Single Control Blade Material. 0 - Unique, 1 - Uniform
+0					// Flibe. 0 - Unique, 1 - Uniform
+--Densities
+10.9                // Cold Fuel Density [g/cc]
+1.0                 // Cold Carbon Buffer Density [g/cc]
+1.9                 // Cold Inner Pyrolytic Carbon Density [g/cc]
+3.1                 // Cold Silicon Carbide Density [g/cc]
+1.87                // Cold Outer Pyrolytic Carbon Density [g/cc]
+1.75                // Cold Graphite Density [g/cc]
+1.95                // Cold Carbon-Carbon Composite Density [g/cc]
+1.25                // Cold Europia (Burnable Poison) Density [g/cc]
+10.28               // Cold MHC (Control Blade) Density [g/cc]
+2.37                // Cold Boron Carbide Density [g/cc]
+8.93                // Cold Alloy N Density [g/cc]
+7.92                // Cold Hastelloy 800 Density [g/cc]
+--Thermal Expansion Coefficients (x 10^-6)
+7.6                 // Fuel
+5.5                 // Buffer
+5.5                 // Inner Pyrolytic Carbon
+5                   // Silicon Carbide
+5.5                 // Outer Pyrolytic Carbon
+5                   // Graphite
+5                   // Carbon-Carbon Composite
+7.5                 // Europia (BP)
+4.8                 // MHC (CB)
+5                   // Boron Carbide
+13.6                // Alloy N (RPV Liner)
+17.3                // Hastelloy 800 (RPV)
+--Thermal Conductivities
+3.7                 // Fuel  [W/(m*K)]
+0.5                 // Buffer Graphite [W/(m*K)]
+4                   // Inner Pyrolytic Carbon [W/(m*K)]
+16                  // Silicon Carbide [W/(m*K)]
+4                   // Outer Pyrolytic Carbon [W/(m*K)]  
+15                  // Unirradiated Graphite [W/(m*K)]
+15                  // Fuel Stripe Matrix  [W/(m*K)]
+
+-THERMAL HYDRAULIC PARAMETERS
+--Core Power and Flow Properties
+5                   // Number of Thermal Hydraulic Iterations
+1.953376E-07        // Core Average Power Density [kW/g]
+26750               // Mass Flow Rate through Core [kg/s]
+293                 // Cold Component Reference Temperature [K]
+732                 // Core Inlet Temperature [K]
+0                   // Print TH Profile for Highest Power Zone. 0 - No, 1 - Yes
+1                   // Fuel Stripe Temperature Profile. 0 - Homogenized, 1 - Particle Reconstructed
+--Flibe Properties
+0.0056              // Viscosity [Pa*s]
+13.525              // Prandtl Number
+2415                // Heat Capacity [J/(kg*K)]
+1                   // Thermal Conductivity [W/(m*K)]
+
+-DEPLETION SIMULATION OPTIONS
+0                   // Use Fluence-Dependent Thermal Conductivity and Thermal Expansion for Graphite. 0 - False (Invariant with Burnup), 1 - True
+0                   // Use Equilibrium Xenon Treatment for Fuel. 0 - False, 1 - True
+1                   // Number of BP Burnable Zones. (Serpent supports up to 10)
+1                   // Target eigenvalue for Control Blade Movement    
+100                 // Eigenvalue tolerance for Control Blade movement. [pcm]
+50                  // Initial Guess for Number of CB Groups to Insert
+100000              // Depletion Particles per Cycle
+1000                // Depletion Active Cycles
+150                 // Depletion Inactive Cycles
